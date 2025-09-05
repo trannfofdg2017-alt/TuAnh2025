@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng sinh nhật Tú Anh 🎂</title>
+  <style>
+    :root{
+      --bg1: #ffecd2;
+      --bg2: #fcb69f;
+      --card: rgba(255,255,255,0.12);
+      --accent: #ff5c8a;
+      --muted: rgba(255,255,255,0.85);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;padding:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;color:var(--muted);
+    }
+
+    canvas#confetti{position:fixed;inset:0;z-index:0}
+
+    .wrap{
+      position:relative;z-index:2;max-width:920px;width:92%;
+      margin:32px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius:20px;padding:28px 32px;backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);flex:1 1 520px;min-width:280px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero{
+      text-align:center;padding:6px 10px;
+    }
+
+    h1{
+      margin:6px 0;font-size:clamp(28px,6vw,56px);line-height:1.02;
+      background: linear-gradient(90deg,#ffffff, #ffd1e6 60%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;
+      letter-spacing:0.4px;text-shadow: 0 8px 30px rgba(255,92,138,0.12);
+    }
+
+    .subtitle{margin:6px 0 18px;font-size:1.1rem;color:rgba(255,255,255,0.92)}
+
+    .message-box{margin-top:12px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));}
+
+    .meta{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:14px}
+    .badge{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.06);font-weight:600}
+
+    .controls{display:flex;gap:12px;justify-content:center;margin-top:18px}
+    .btn{background:var(--accent);border:0;color:white;padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;box-shadow:0 8px 20px rgba(255,92,138,0.18)}
+    .btn.ghost{background:transparent;color:white;border:1px solid rgba(255,255,255,0.12);box-shadow:none}
+
+    .hidden{opacity:0;transform:translateY(6px);height:0;overflow:hidden}
+    .reveal{opacity:1;transform:translateY(0);height:auto;transition:all 600ms cubic-bezier(.2,.9,.3,1)}
+
+    .typing{font-family: 'Courier New', monospace; white-space:pre-wrap; font-size:1.05rem}
+
+    .heart{position:fixed;z-index:1;pointer-events:none;font-size:18px;opacity:0.95;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.18))}
+
+    footer{position:fixed;left:16px;bottom:14px;color:rgba(255,255,255,0.75);font-size:0.95rem}
+
+    .photo{
+      margin-top:18px;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.18);
+    }
+    .photo img{width:100%;display:block}
+
+    @media (max-width:640px){
+      .card{padding:20px}
+      .controls{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <div class="wrap">
+    <section class="card hero">
+      <h1>🎂 Chúc mừng sinh nhật<br>Tú Anh 💖</h1>
+      <div class="subtitle">Chúc cậu tuổi mới an yên, tràn đầy niềm vui và thật nhiều nụ cười.</div>
+
+      <div class="message-box" id="messageBox">
+        <div id="short" class="typing">Nhấn nút bên dưới để xem lời chúc đặc biệt dành cho cậu 💌</div>
+        <div id="long" class="typing hidden" aria-hidden="true"></div>
+
+        <div class="controls">
+          <button id="revealBtn" class="btn">Mở lời chúc</button>
+          <button id="sparkleBtn" class="btn ghost">Rộn pháo hoa</button>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="badge">Ngày hôm nay là của cậu ✨</div>
+        <div class="badge">Người gửi: Một người rất thích cậu ❤️</div>
+      </div>
+    </section>
+
+    <aside class="card" style="min-width:260px;max-width:340px;">
+      <div style="text-align:center;">
+        <div style="font-size:14px;color:rgba(255,255,255,0.9);margin-bottom:8px">Ảnh kỷ niệm</div>
+        <div class="photo">
+          <img src="IMG_3312.JPG" alt="Ảnh Tú Anh" />
+        </div>
+      </div>
+
+      <div style="margin-top:18px;text-align:center;color:rgba(255,255,255,0.9);font-size:0.95rem">Gửi lời chúc này bằng cách gửi <strong>link</strong> hoặc quét QR code (nếu đã deploy).</div>
+    </aside>
+  </div>
+
+  <footer>Thiệp nhỏ này dành cho Tú Anh — mở bằng trình duyệt để xem trọn vẹn ✨</footer>
+
+  <script>
+    const revealBtn = document.getElementById('revealBtn');
+    const long = document.getElementById('long');
+    const short = document.getElementById('short');
+    const sparkleBtn = document.getElementById('sparkleBtn');
+
+    const messageText = `Tú Anh thân mến,\n\nChúc mừng sinh nhật cậu!\nMong rằng mỗi ngày đến với cậu đều tràn đầy nắng,\nnhững ước mơ nhỏ đều dần trở thành hiện thực,\nvà cậu luôn cười thật tươi như hôm nay.\n\nCảm ơn cậu đã là cậu — người khiến mọi thứ quanh tớ tốt đẹp hơn.\nChúc cậu một tuổi mới thật ấm áp và hạnh phúc.\n\nThương chúc cậu. ❤️`;
+
+    function typeText(el, text, speed=28){
+      el.classList.remove('hidden');
+      el.setAttribute('aria-hidden','false');
+      el.textContent = '';
+      let i=0;
+      return new Promise(res=>{
+        const id = setInterval(()=>{
+          el.textContent += text[i] || '';
+          i++;
+          if(i>text.length){ clearInterval(id); res(); }
+        }, speed);
+      });
+    }
+
+    revealBtn.addEventListener('click', async ()=>{
+      revealBtn.disabled = true; revealBtn.textContent = 'Đang mở...';
+      await typeText(long, messageText, 28);
+      short.classList.add('hidden');
+      long.classList.add('reveal');
+      revealBtn.textContent = 'Đã mở lời chúc';
+    });
+
+    function createHeart(){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '💗';
+      const size = 12 + Math.random()*36;
+      heart.style.fontSize = size + 'px';
+      heart.style.left = Math.random()*100 + 'vw';
+      heart.style.bottom = '-10vh';
+      heart.style.opacity = (0.6 + Math.random()*0.4);
+      const duration = 6000 + Math.random()*6000;
+      heart.style.transition = `transform ${duration}ms linear, opacity ${duration}ms linear`;
+      document.body.appendChild(heart);
+      requestAnimationFrame(()=>{
+        heart.style.transform = `translateY(-120vh) rotate(${(Math.random()-0.5)*720}deg)`;
+        heart.style.opacity = '0';
+      });
+      setTimeout(()=>heart.remove(), duration+100);
+    }
+    setInterval(createHeart, 520);
+
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+    window.addEventListener('resize', ()=>{ W = canvas.width = innerWidth; H = canvas.height = innerHeight; });
+
+    const colors = ['#ff5c8a','#ffd166','#7ee7c5','#bde0fe','#d6bfff','#ffd1e6'];
+    let confetti = [];
+
+    function spawnConfetti(x, y, count=80){
+      for(let i=0;i<count;i++){
+        confetti.push({
+          x: x + (Math.random()-0.5)*80,
+          y: y + (Math.random()-0.5)*80,
+          vx: (Math.random()-0.5)*8,
+          vy: (Math.random()-1.5)*8 - 2,
+          size: 6 + Math.random()*10,
+          color: colors[Math.floor(Math.random()*colors.length)],
+          rot: Math.random()*360,
+          vr: (Math.random()-0.5)*12,
+          life: 120 + Math.random()*80
+        });
+      }
+    }
+
+    function render(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=confetti.length-1;i>=0;i--){
+        const p = confetti[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.rot += p.vr; p.life--;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+        ctx.restore();
+        if(p.y > H + 50 || p.life <= 0) confetti.splice(i,1);
+      }
+      requestAnimationFrame(render);
+    }
+    render();
+
+    sparkleBtn.addEventListener('click', ()=>{
+      spawnConfetti(W/2, H/3, 140);
+      sparkleBtn.textContent = 'Pháo hoa ✨';
+      setTimeout(()=> sparkleBtn.textContent = 'Rộn pháo hoa', 1200);
+    });
+
+    setTimeout(()=>spawnConfetti(W/2, H/3, 90), 700);
+
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') revealBtn.click(); });
+  </script>
+</body>
+</html>
